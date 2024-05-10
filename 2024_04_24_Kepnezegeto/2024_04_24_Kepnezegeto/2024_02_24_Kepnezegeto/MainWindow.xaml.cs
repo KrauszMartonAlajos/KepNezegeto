@@ -26,6 +26,7 @@ namespace _2024_02_24_Kepnezegeto
         Photos photos;
         string path = "h:/KrauszMartonWPF_Projekt/2024_04_24_Kepnezegeto/images";
         ICollectionView myView;
+        int mode = 1;
 
         public MainWindow()
         {
@@ -83,14 +84,17 @@ namespace _2024_02_24_Kepnezegeto
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("1.mód");
+            mode = 1;
         }
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("2.mód");
+            mode = 2;
         }
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("3.mód");
+            mode = 3;
         }
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {

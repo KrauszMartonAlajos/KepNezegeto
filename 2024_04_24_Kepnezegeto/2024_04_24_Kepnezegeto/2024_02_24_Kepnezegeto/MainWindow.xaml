@@ -15,9 +15,11 @@
         <DataTemplate x:Key="dtPict">
             <Border BorderThickness="3" BorderBrush="{Binding Name, Converter={StaticResource colorConv}}" CornerRadius="10">
                 <StackPanel>
+                    <!--ide kerül a kép 1-2-3 szöveg egység-->
                     <Image Source="{Binding FullName}" Width="128" Margin="5"/>
                     <TextBlock Text="{Binding Name, Mode=OneWay}" TextAlignment="Center" FontWeight="Bold"/>
                     <TextBlock Text="{Binding LastAccessTime, Mode=OneWay}" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding FullName, Mode=OneWay}" Width="150" TextAlignment="Center" TextWrapping="Wrap"/> <!--ezt kell fixelni-->
                 </StackPanel>
             </Border>
         </DataTemplate>
