@@ -90,7 +90,19 @@
 
 
 
-        <!--<ListBox x:Name="lstBox1" ItemsSource="{Binding SingleItemCollection}" ItemsPanel="{StaticResource pictTemplate}" ItemTemplate="{StaticResource dtPict}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListBox x:Name="lstBox1" Width="500" Height="500" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="LightGray" Margin="5" Width="499" Height="499">
+                        <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource dtPict}"/>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
             <ListBox.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
@@ -102,7 +114,7 @@
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </ListBox.GroupStyle>
-        </ListBox>-->
+        </ListBox>
 
     </DockPanel>
 </Window>

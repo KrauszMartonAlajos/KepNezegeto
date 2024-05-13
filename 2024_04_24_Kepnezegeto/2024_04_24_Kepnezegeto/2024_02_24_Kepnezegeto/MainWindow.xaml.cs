@@ -32,9 +32,13 @@ namespace _2024_02_24_Kepnezegeto
         {
             InitializeComponent();
             this.Loaded += MainWindow_Loaded; //this.Loaded += TAB TAB
-            //lstBox1.Visibility = Visibility.Visible;
+            lstBox1.Visibility = Visibility.Visible;
             lstBox2.Visibility = Visibility.Collapsed;
             lstBox3.Visibility = Visibility.Collapsed;
+            lstBox1.SelectedIndex = 0;
+            fel_balra.IsEnabled = true;
+            le_jobbra.IsEnabled = true;
+            GombCheck();
             mode = 1;
         }
 
@@ -87,60 +91,104 @@ namespace _2024_02_24_Kepnezegeto
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("1.mód");
-            //lstBox1.Visibility = Visibility.Visible;
+            GombCheck();
+            lstBox1.Visibility = Visibility.Visible;
             lstBox2.Visibility = Visibility.Collapsed;
             lstBox3.Visibility = Visibility.Collapsed;
+            lstBox1.SelectedIndex = 0;
+            lstBox1.ScrollIntoView(lstBox1.SelectedItem);
+            fel_balra.IsEnabled = true;
+            le_jobbra.IsEnabled = true;
+            GombCheck();
             mode = 1;
         }
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("2.mód");
-            //lstBox1.Visibility = Visibility.Hidden;
+            GombCheck();
+            lstBox1.Visibility = Visibility.Hidden;
             lstBox2.Visibility = Visibility.Visible;
             lstBox3.Visibility = Visibility.Collapsed;
             lstBox2.SelectedIndex = 0;
+            lstBox2.ScrollIntoView(lstBox2.SelectedItem);
+            fel_balra.IsEnabled = true;
+            le_jobbra.IsEnabled = true;
             GombCheck();
             mode = 2;
         }
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("3.mód");
-            //lstBox1.Visibility = Visibility.Hidden;
+
+            lstBox1.Visibility = Visibility.Hidden;
             lstBox2.Visibility = Visibility.Collapsed;
             lstBox3.Visibility = Visibility.Visible;
+            fel_balra.IsEnabled = false;
+            le_jobbra.IsEnabled = false;
             mode = 3;
         }
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            int i = lstBox2.SelectedIndex;
-
-            if (i == -1 || i == 0)
+            //fel
+            if (mode == 2)
             {
-                return;
+                int i = lstBox2.SelectedIndex;
+                if (i == -1 || i == 0)
+                {
+                    return;
+                }
+                lstBox2.SelectedIndex = i - 1;
+                lstBox2.ScrollIntoView(lstBox2.SelectedItem);
             }
-
-            // Select the previous item
-            lstBox2.SelectedIndex = i - 1;
-            lstBox2.ScrollIntoView(lstBox2.SelectedItem);
+            else if (mode == 1)
+            {
+                int i = lstBox1.SelectedIndex;
+                if (i == -1 || i == 0)
+                {
+                    return;
+                }
+                lstBox1.SelectedIndex = i - 1;
+                lstBox1.ScrollIntoView(lstBox1.SelectedItem);
+            }
             GombCheck();
         }
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-                        int i = lstBox2.SelectedIndex;
-            if (i == -1 || i == lstBox2.Items.Count - 1)
+            //le
+            if (mode == 2)
             {
-                return;
+                int i = lstBox2.SelectedIndex;
+                if (i == -1 || i == lstBox2.Items.Count - 1)
+                {
+                    return;
+                }
+                lstBox2.SelectedIndex = i + 1;
+                lstBox2.ScrollIntoView(lstBox2.SelectedItem);
             }
-            lstBox2.SelectedIndex = i + 1;
-            lstBox2.ScrollIntoView(lstBox2.SelectedItem);
+            else if (mode == 1) 
+            {
+                int i = lstBox1.SelectedIndex;
+                if (i == -1 || i == lstBox1.Items.Count - 1)
+                {
+                    return;
+                }
+                lstBox1.SelectedIndex = i + 1;
+                lstBox1.ScrollIntoView(lstBox1.SelectedItem);
+            }
             GombCheck();
         }
         private void GombCheck()
         {
-            int i = lstBox2.SelectedIndex;
-            fel_balra.IsEnabled = (i > 0);
-            le_jobbra.IsEnabled = (i < lstBox2.Items.Count - 1);
+            if (mode == 2)
+            {
+                int i = lstBox2.SelectedIndex;
+                fel_balra.IsEnabled = (i > 0);
+                le_jobbra.IsEnabled = (i < lstBox2.Items.Count - 1);
+            }
+            else if (mode == 1)
+            {
+                int i = lstBox1.SelectedIndex;
+                fel_balra.IsEnabled = (i > 0);
+                le_jobbra.IsEnabled = (i < lstBox1.Items.Count - 1);
+            }
         }
     }
 }
