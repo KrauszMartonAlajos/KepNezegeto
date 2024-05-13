@@ -24,7 +24,7 @@ namespace _2024_02_24_Kepnezegeto
     public partial class MainWindow : Window
     {
         Photos photos;
-        string path = "h:/KrauszMartonWPF_Projekt/2024_04_24_Kepnezegeto/images";
+        string path = "H:/WPF_BEADANDÓ/KepNezegeto/2024_04_24_Kepnezegeto/2024_04_24_Kepnezegeto/images";
         ICollectionView myView;
         int mode = 1;
 
@@ -32,6 +32,10 @@ namespace _2024_02_24_Kepnezegeto
         {
             InitializeComponent();
             this.Loaded += MainWindow_Loaded; //this.Loaded += TAB TAB
+            //lstBox1.Visibility = Visibility.Visible;
+            lstBox2.Visibility = Visibility.Collapsed;
+            lstBox3.Visibility = Visibility.Collapsed;
+            mode = 1;
         }
 
         public void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -84,25 +88,59 @@ namespace _2024_02_24_Kepnezegeto
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("1.mód");
+            //lstBox1.Visibility = Visibility.Visible;
+            lstBox2.Visibility = Visibility.Collapsed;
+            lstBox3.Visibility = Visibility.Collapsed;
             mode = 1;
         }
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("2.mód");
+            //lstBox1.Visibility = Visibility.Hidden;
+            lstBox2.Visibility = Visibility.Visible;
+            lstBox3.Visibility = Visibility.Collapsed;
+            lstBox2.SelectedIndex = 0;
+            GombCheck();
             mode = 2;
         }
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("3.mód");
+            //lstBox1.Visibility = Visibility.Hidden;
+            lstBox2.Visibility = Visibility.Collapsed;
+            lstBox3.Visibility = Visibility.Visible;
             mode = 3;
         }
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("balra");
+            int i = lstBox2.SelectedIndex;
+
+            if (i == -1 || i == 0)
+            {
+                return;
+            }
+
+            // Select the previous item
+            lstBox2.SelectedIndex = i - 1;
+            lstBox2.ScrollIntoView(lstBox2.SelectedItem);
+            GombCheck();
         }
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("jobbra");
+                        int i = lstBox2.SelectedIndex;
+            if (i == -1 || i == lstBox2.Items.Count - 1)
+            {
+                return;
+            }
+            lstBox2.SelectedIndex = i + 1;
+            lstBox2.ScrollIntoView(lstBox2.SelectedItem);
+            GombCheck();
+        }
+        private void GombCheck()
+        {
+            int i = lstBox2.SelectedIndex;
+            fel_balra.IsEnabled = (i > 0);
+            le_jobbra.IsEnabled = (i < lstBox2.Items.Count - 1);
         }
     }
 }

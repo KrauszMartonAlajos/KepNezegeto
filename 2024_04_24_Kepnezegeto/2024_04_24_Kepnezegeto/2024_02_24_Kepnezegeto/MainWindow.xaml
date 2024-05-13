@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2024_02_24_Kepnezegeto"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000"
+        Title="MainWindow" Height="750" Width="1000"
         >
 
     <Window.Resources >
@@ -37,14 +37,16 @@
             <Button Content="1. mód"  Height="21" Click="Button_Click_2" />
             <Button Content="2. mód"  Height="21" Click="Button_Click_3" />
             <Button Content="3. mód"  Height="21" Click="Button_Click_4" />
-            <DockPanel Width="531"/>
-            <Button Content="☜(ﾟヮﾟ☜)"  Height="21" Click="Button_Click_5" />
-            <Button Content="(☞ﾟヮﾟ)☞"  Height="21" Click="Button_Click_6" />
+            <DockPanel Width="600"/>
+            <Button x:Name="fel_balra" Content="↑" FontSize="20"  Height="30" Click="Button_Click_5" />
+            <DockPanel Width="30"/>
+            <Button x:Name="le_jobbra" Content="↓"  FontSize="20" Height="30" Click="Button_Click_6" />
         </ToolBar>
         <StatusBar DockPanel.Dock="Bottom" Height="26" VerticalAlignment="Top">
             <TextBlock Text="{Binding Count , Converter={StaticResource countConv}}"/>
         </StatusBar>
-        <ListBox x:Name="lstBox" ItemsSource="{Binding}" ItemsPanel="{StaticResource pictTemplate}" ItemTemplate="{StaticResource dtPict}"
+
+        <ListBox x:Name="lstBox3" HorizontalAlignment="Center" Width="950px" ItemsSource="{Binding}" ItemsPanel="{StaticResource pictTemplate}" ItemTemplate="{StaticResource dtPict}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.GroupStyle>
                 <GroupStyle>
@@ -58,6 +60,49 @@
                 </GroupStyle>
             </ListBox.GroupStyle>
         </ListBox>
+
+        <ListBox x:Name="lstBox2" Width="500" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="LightGray" Margin="5" Width="450">
+                        <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource dtPict}"/>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="2" BorderBrush="Orange" CornerRadius="10">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
+                            </Border>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListBox.GroupStyle>
+        </ListBox>
+
+
+
+
+        <!--<ListBox x:Name="lstBox1" ItemsSource="{Binding SingleItemCollection}" ItemsPanel="{StaticResource pictTemplate}" ItemTemplate="{StaticResource dtPict}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="2" BorderBrush="Orange" CornerRadius="10">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
+                            </Border>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListBox.GroupStyle>
+        </ListBox>-->
 
     </DockPanel>
 </Window>
